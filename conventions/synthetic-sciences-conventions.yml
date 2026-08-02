@@ -1,0 +1,58 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.syntheticsciences.ai/atlas/rest-api
+docs:
+  - https://docs.syntheticsciences.ai/atlas/rest-api
+  - https://docs.syntheticsciences.ai/atlas/cli-overview
+base_url: https://app.syntheticsciences.ai/api/v1
+authentication:
+  style: bearer
+  detail: "Authorization: Bearer thk_* (see authentication/synthetic-sciences-authentication.yml)"
+idempotency:
+  supported: true
+  mechanism: header
+  header: Idempotency-Key
+  cli_flag: "--idempotency-key <key>"
+  scope: writes
+  guidance: >-
+    Pass an `Idempotency-Key` HTTP header (or `--idempotency-key` on the CLI) when
+    retrying writes from an orchestrator so a replayed create/commit is not duplicated.
+    The CLI itself handles retries and idempotency keys for its own operations.
+pagination:
+  style: cursor-and-page
+  detail: >-
+    Graph relationships are paged — `link:children` / `link:parents`
+    (GET /nodes/{id}/children, /parents) page children or parents; node/source
+    listings (GET /nodes, GET /sources) return collections.
+output:
+  formats: [json, pretty, table, tsv, csv]
+  default: "JSON when piped / non-TTY; pretty at a TTY. The API always returns JSON."
+  force: "--format=json for lossless output"
+request_tracing:
+  debug_flag: "--debug prints structured request debugging"
+versioning:
+  api: uri-path
+  current: v1
+  cli_scheme: semver
+  cli_current: 0.13.2
+  command_naming: >-
+    CLI command grammar versioned at 0.8.x — singular-noun namespaces are canonical;
+    pre-0.8 plural aliases remain as hidden legacy aliases.
+error_envelope:
+  format: json
+  detail: >-
+    Errors return JSON. Retired MCP-era endpoints return HTTP 426 Upgrade Required.
+    See errors/synthetic-sciences-problem-types.yml for the documented status semantics.
+rate_limiting:
+  signal: http-status
+  retried: [408, 425, 500, 502, 503, 504]
+  not_retried:
+    - {status: 429, meaning: "rate limited — deliberate; CLI backs off with a 'wait a moment' message instead of retrying"}
+    - {status: 409, meaning: "conflict — deliberate; CLI surfaces a 'refetch' message"}
+  retry_policy: "Only genuinely transient failures (408/425/5xx) are retried; --no-retry / --retry-max <n> tune it."
+destructive_writes:
+  guard: "CLI requires --yes (or --force for safety-gated ops); over HTTP they are ordinary DELETE/terminate routes to gate in your own tooling."
+cross_links:
+  authentication: authentication/synthetic-sciences-authentication.yml
+  errors: errors/synthetic-sciences-problem-types.yml
+  lifecycle: lifecycle/synthetic-sciences-lifecycle.yml

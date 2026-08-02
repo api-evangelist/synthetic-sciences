@@ -1,0 +1,48 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.syntheticsciences.ai/atlas/cli-overview
+format: http-status
+note: >-
+  No OpenAPI is published, so this is the HTTP status contract documented on the CLI
+  overview / REST API pages rather than an RFC 9457 problem+json registry. Errors are
+  returned as JSON. Statuses below are the ones the provider explicitly documents.
+problems:
+  - status: 408
+    title: Request Timeout
+    class: transient
+    behavior: "Retried automatically by the CLI (transient)."
+  - status: 425
+    title: Too Early
+    class: transient
+    behavior: "Retried automatically by the CLI (transient)."
+  - status: 409
+    title: Conflict
+    class: deliberate
+    behavior: "Not retried. The CLI surfaces a 'refetch' message and backs off; re-read state and retry the write."
+    remediation: "Re-fetch the current node/resource state, then reissue the write with a fresh Idempotency-Key."
+  - status: 426
+    title: Upgrade Required
+    class: deprecation
+    behavior: "Returned by retired MCP-era auth and device-pairing endpoints."
+    remediation: "Use `atlas login` or a thk_* API key against /api/v1 instead of the retired MCP-era flow."
+  - status: 429
+    title: Too Many Requests
+    class: deliberate
+    behavior: "Not retried. The CLI surfaces a 'wait a moment' message and backs off."
+    remediation: "Slow the request rate; check `atlas usage:summary` for quota exhaustion on metered surfaces."
+  - status: 500
+    title: Internal Server Error
+    class: transient
+    behavior: "Retried automatically by the CLI (5xx transient)."
+  - status: 502
+    title: Bad Gateway
+    class: transient
+    behavior: "Retried automatically by the CLI (5xx transient)."
+  - status: 503
+    title: Service Unavailable
+    class: transient
+    behavior: "Retried automatically by the CLI (5xx transient)."
+  - status: 504
+    title: Gateway Timeout
+    class: transient
+    behavior: "Retried automatically by the CLI (5xx transient)."

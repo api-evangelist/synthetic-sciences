@@ -1,0 +1,32 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.npmjs.com/org/synsci
+packages:
+  - language: javascript
+    registry: npm
+    name: "@synsci/atlas"
+    url: https://www.npmjs.com/package/@synsci/atlas
+    install: npm i -g @synsci/atlas@latest
+    version: 0.13.2
+    official: true
+    description: >-
+      Atlas by Synthetic Sciences — research map CLI and bundled agent skills.
+      A thin HTTP client over the Atlas REST API (base https://app.syntheticsciences.ai/api/v1);
+      159 commands plus nine bundled Agent Skills.
+  - language: javascript
+    registry: npm
+    name: "@synsci/delphi"
+    url: https://www.npmjs.com/package/@synsci/delphi
+    install: npx @synsci/delphi
+    version: 0.5.4
+    official: true
+    description: >-
+      One-command installer for Delphi — the open-source, self-hosted MCP server that
+      gives AI coding agents semantic context over code repositories, research papers,
+      and HuggingFace datasets. Apache 2.0.
+notes: >-
+  The Atlas backend (github.com/synthetic-sciences/thesis) is closed source; the
+  published first-party client is the @synsci/atlas CLI. Delphi (@synsci/delphi) is the
+  open-source MCP server. The unscoped npm package "openscience" (0.0.2) is NOT
+  first-party (no repository / description) and is excluded. The OpenScience workbench
+  itself ships as the synthetic-sciences/openscience repo, run from source, not as a package.

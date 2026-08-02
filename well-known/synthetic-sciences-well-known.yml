@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: searched
+host: https://app.syntheticsciences.ai
+documents:
+  - path: /.well-known/security.txt
+    status: 200
+    valid: false
+    note: "Returns the SPA index.html shell (soft-404); not a real RFC 9116 security.txt."
+  - path: /.well-known/openid-configuration
+    status: 200
+    valid: false
+    note: "Returns the SPA index.html shell (soft-404); not a real OIDC discovery document."
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    valid: false
+    note: "Returns the SPA index.html shell (soft-404); not a real RFC 8414 document."
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+agent_surface:
+  note: >-
+    No valid /.well-known/ documents are published (the app is a client-side SPA that
+    returns its shell for unknown paths). Atlas does, however, publish a real
+    machine-readable agent surface under /documentation:
+  documents:
+    - {path: /documentation/llms.txt, status: 200, file: ../llms/synthetic-sciences-llms.txt}
+    - {path: /documentation/llms-full.txt, status: 200, note: "full 159-command surface; not saved (gitignored *-llms-full.txt, embeds example tokens)"}
+    - {path: /documentation/skill.md, status: 200, file: ../skills/synthetic-sciences-atlas.md}

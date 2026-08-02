@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: generated
+note: >-
+  synthetic-sciences-atlas.md is the provider's own bundled Atlas skill, saved verbatim
+  (searched from https://app.syntheticsciences.ai/documentation/skill.md). The other two
+  are generated operating instructions grounded in real, verified Atlas CLI commands and
+  /api/v1 routes.
+skills:
+  - file: synthetic-sciences-atlas.md
+    name: atlas
+    method: searched
+    source: https://app.syntheticsciences.ai/documentation/skill.md
+    api: https://app.syntheticsciences.ai/api/v1
+    operations: [brief, hypothesis:add, experiment:plan, run:record, decision:add, library:search, node:share, fork]
+  - file: synthetic-sciences-research-loop.md
+    name: atlas-research-loop
+    method: generated
+    api: https://app.syntheticsciences.ai/api/v1
+    operations: [brief, hypothesis:add, experiment:plan, run:record, run:compare, leaderboard, decision:add, hypothesis:update]
+  - file: synthetic-sciences-source-to-map.md
+    name: atlas-source-to-map
+    method: generated
+    api: https://app.syntheticsciences.ai/api/v1
+    operations: [library:add, library:list, library:search, library:ask, research:ask, usage:summary]

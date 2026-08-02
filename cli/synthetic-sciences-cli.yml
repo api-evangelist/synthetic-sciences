@@ -1,0 +1,52 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.syntheticsciences.ai/atlas/cli-overview
+cli:
+  name: atlas
+  package: "@synsci/atlas"
+  version: 0.13.2
+  summary: >-
+    One CLI, @synsci/atlas, drives the whole Atlas suite. Every command is a direct
+    HTTP call to https://app.syntheticsciences.ai/api/v1, plus a handful of local
+    commands (login, logout, doctor, config:*, secret:*). 159 commands, nine bundled
+    Agent Skills. `atlas help --format=json` is generated from the same registry that
+    dispatches requests, so it is the authoritative route/schema reference.
+  install:
+    - npm i -g @synsci/atlas@latest
+  verify:
+    - atlas login
+    - atlas doctor --format=json
+    - atlas install   # wire bundled skills into detected coding agents
+  naming_convention: "namespace:verb; namespaces are singular nouns (node:*, key:*, label:*)"
+  output_formats: [pretty, json, table, tsv, csv]
+  global_flags:
+    - {flag: "--format <format>", use: "json, tsv, csv, table, or pretty"}
+    - {flag: "--env <profile>", use: "select a stored CLI profile"}
+    - {flag: "--out <path>", use: "write output to a file, or - for stdout"}
+    - {flag: "--open", use: "open browser-bound URLs where supported"}
+    - {flag: "--yes", use: "confirm destructive operations"}
+    - {flag: "--force", use: "force a safety-gated operation"}
+    - {flag: "--idempotency-key <key>", use: "stable key for retried writes"}
+    - {flag: "--timeout <seconds>", use: "per-request timeout"}
+    - {flag: "--no-retry / --retry-max <n>", use: "tune transient-error retries (408/425/5xx only)"}
+    - {flag: "--debug", use: "print structured request debugging"}
+  command_families:
+    - {group: setup, commands: [init, install, doctor], note: "init writes atlas.json activation contract"}
+    - {group: auth, commands: [login, logout, whoami, "key:create", "key:list", "key:rotate", "key:delete", "config:*", "secret:*"]}
+    - {group: research-loop, commands: [brief, "hypothesis:add", "hypothesis:update", "experiment:plan", "decision:add", "eval:define", reproduce]}
+    - {group: runs, commands: ["run:record", "run:compare", leaderboard, "run:spool:list", "run:spool:flush", "exec:start", "exec:list", "exec:stop", "run:chart", "agent:run"]}
+    - {group: compute, commands: ["compute:catalog", "compute:up", "compute:list", "compute:ssh", "compute:release"], note: "cross-provider GPU marketplace, pass-through pricing"}
+    - {group: optimize, commands: ["optimize:start", "optimize:status", "optimize:stop", "optimize:verify", autoresearch, "optimize:progress"], note: "GEPA search + refereed campaigns"}
+    - {group: journal, commands: ["note:add", "notebook:cell", "log:append", "log:search", "log:tail"]}
+    - {group: graph, commands: ["project:*", "node:*", "link:*", "map:*", "access:*", "draft:*", "label:*"]}
+    - {group: evidence, commands: ["evidence:add", "evidence:list", "evidence:show", "evidence:note", "evidence:link", "evidence:download", "evidence:files", "evidence:delete"]}
+    - {group: code-state, commands: ["repo:capture", "repo:pin", "repo:push", "github:link", "github:set", "github:status", "integration:huggingface:set", "integration:wandb:set"]}
+    - {group: library, commands: ["library:add", "library:list", "library:show", "library:search", "library:ask", "library:grep", "library:jobs:create", "library:jobs:stream"]}
+    - {group: research, commands: ["research:ask", "research:jobs:create", "research:jobs:stream", "web:search", "web:fetch", "usage:summary"]}
+    - {group: sharing, commands: ["node:share", "access:*", fork]}
+    - {group: export, commands: ["map:export", "map:import", "map:summary:export", "map:summary:pdf", "history:export"]}
+  key_flows:
+    - "Research loop: atlas init -> brief -> hypothesis:add -> experiment:plan -> run:record --plan <id> -> run:compare/leaderboard -> decision:add"
+    - "Source-to-map: library:add -> library:search --save-to <node> -> library:ask --attach <node>"
+    - "Managed GPU: compute:catalog -> compute:up --node <id> -> compute:ssh -> compute:release"
+  discover: "atlas help --format=json  |  atlas help <command> --schema --format=json"

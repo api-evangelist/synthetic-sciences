@@ -1,0 +1,32 @@
+generated: '2026-07-21'
+method: derived
+source: https://docs.syntheticsciences.ai/atlas/rest-api
+note: >-
+  Derived from the documented REST/auth/conventions surface (no OpenAPI or published
+  compliance program). Asserts cross-cutting conventions the API demonstrably follows;
+  no Compliance pointer is emitted because no certification/compliance program was found.
+standards:
+  - id: oauth2
+    conforms: partial
+    evidence: "Interactive browser login mints a bearer key; no documented OAuth scope surface."
+  - id: bearer-token-auth
+    conforms: true
+    evidence: "Authorization: Bearer thk_* on every /api/v1 request."
+  - id: idempotency-key
+    conforms: true
+    evidence: "Idempotency-Key header (and --idempotency-key CLI flag) documented for retried writes."
+  - id: rfc8594-sunset-deprecation
+    conforms: false
+    evidence: "No Sunset/Deprecation header support documented; retired endpoints use HTTP 426 instead."
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: "Errors are JSON but application/problem+json is not documented."
+  - id: uri-path-versioning
+    conforms: true
+    evidence: "Base URL carries /api/v1."
+  - id: mcp
+    conforms: true
+    evidence: "Delphi is a published, MCP-compatible open-source server (Atlas itself is REST+CLI, no hosted MCP)."
+  - id: json-content
+    conforms: true
+    evidence: "The API always returns JSON; --format=json is lossless."

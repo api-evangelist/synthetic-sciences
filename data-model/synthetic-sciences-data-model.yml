@@ -1,0 +1,73 @@
+generated: '2026-07-21'
+method: derived
+source: https://docs.syntheticsciences.ai/atlas/graph-model
+summary: >-
+  Atlas is a research graph: durable typed nodes connected by dependency/lineage links.
+  Derived from the graph-model and Atlas index docs (no OpenAPI published). A Project is
+  the root node for a folder/repo; the research loop attaches hypotheses, experiment
+  plans, recorded runs, decisions, insights, and evidence, all searchable against library
+  sources.
+entities:
+  - name: Project
+    is_a: node
+    created_by: "project:create (POST /projects/create)"
+    description: Root node for a folder or repo; where the research loop runs.
+  - name: Node
+    description: >-
+      The generic graph unit; staged (draft) then committed with revision history.
+      All research-loop objects are node kinds. Carries access policy, labels, links.
+  - name: Hypothesis
+    is_a: node
+    created_by: "hypothesis:add (POST /hypotheses:add)"
+    description: A falsifiable claim, its assumptions, and its disconfirmers.
+  - name: ExperimentPlan
+    is_a: node
+    created_by: "experiment:plan (POST /experiments:plan)"
+    description: Config, metric, and success criterion declared before a run.
+  - name: Run
+    is_a: node
+    created_by: "run:record (/runs:record)"
+    description: >-
+      An empirical node with config, metrics, outcome (success/failure/inconclusive)
+      and, on failure, a failure_mode (diverged/oom/data_bug/code_bug/underperformed/other);
+      auto-captures git code state.
+  - name: Decision
+    is_a: node
+    created_by: "decision:add (POST /decisions:add)"
+    description: A choice and the runs or evidence it rests on.
+  - name: Insight
+    is_a: node
+    created_by: "note:add (/notes)"
+    description: A freeform observation worth keeping.
+  - name: Evidence
+    created_by: "evidence:add (POST /nodes/{id}/artifacts/uploads/prepare)"
+    description: Raw files, metrics, logs, or external JSON attached to a node.
+  - name: Source
+    created_by: "library:add (POST /sources)"
+    types: [repository, documentation, research_paper, huggingface_dataset, local_folder]
+    description: Material a graph can search and cite (indexed by Library).
+  - name: Label
+    created_by: "label:create (POST /nodes/{root_id}/tags)"
+    description: Reusable tag assignable to nodes.
+  - name: Execution
+    created_by: "exec:start (POST /nodes/{id}/executions)"
+    description: A managed execution running on a node.
+  - name: ComputeLease
+    created_by: "compute:up (/compute/leases)"
+    description: A GPU VM lease from the cross-provider marketplace, optionally attached to a node.
+relationships:
+  - {from: Node, to: Project, type: belongs_to, via: project_root}
+  - {from: Node, to: Node, type: has_many, via: links (parents/children dependency + lineage)}
+  - {from: ExperimentPlan, to: Hypothesis, type: belongs_to, via: hypothesis}
+  - {from: Run, to: ExperimentPlan, type: belongs_to, via: plan}
+  - {from: Decision, to: Run, type: has_many, via: rests_on}
+  - {from: Decision, to: Evidence, type: has_many, via: rests_on}
+  - {from: Evidence, to: Node, type: belongs_to, via: node_id}
+  - {from: Execution, to: Node, type: belongs_to, via: node_id}
+  - {from: ComputeLease, to: Node, type: belongs_to, via: node (optional)}
+  - {from: Node, to: Label, type: has_many, via: tags}
+  - {from: Project, to: Source, type: has_many, via: scope (atlas.json source_ids)}
+slug_resolvers: [--project, --node, --plan, --hypothesis]
+notes: >-
+  Derived from the documented node model, not from an OpenAPI $ref graph (none published).
+  Node ids resolve from human slugs like `able-helm-1359` or UUIDs.

@@ -1,0 +1,46 @@
+# Atlas Docs
+
+Atlas by Synthetic Sciences is the agent-first protocol and infrastructure for
+autonomous research — the shared substrate between humans, agents, code,
+sources, and public graphs. Agents read and write it directly over the CLI and
+REST; graphs can be private, shared with collaborators, browsed publicly, and
+forked.
+
+## Start
+
+- [Overview](/index.md): What Atlas is and how the CLI, web app, API, and bundled skills fit together.
+- [Quickstart](/quickstart.md): Install `@synsci/atlas`, run browser login, and verify the local profile.
+- [Build a first map](/first-map.md): Create a root node, branch work, attach evidence, and render the tree.
+- [Turn library sources into map state](/source-to-map.md): Index material, search it, ask grounded questions, and save useful results.
+- [Agent onboarding](/agent-onboarding.md): Copy-paste prompt for autonomous setup.
+
+## Primitives
+
+- [Nodes and maps](/graph.md): Nodes, saves, branches, links, access, labels, and draft locks.
+- [Library and research](/sources-search.md): Library indexing, project-scoped search, Atlas web search/fetch, document questions, research runs, and usage.
+- [Evidence and files](/artifacts-files.md): Uploads, evidence notes, file listing, and deletion.
+- [Exports, forks, and sharing](/exports-imports.md): Public graph browsing and `atlas fork`, subgraph export/import, graph-scoped visibility and roles, history export, Markdown summaries, and PDFs.
+
+## Agent-first workflow
+
+Run `atlas init` in a research repo to write `atlas.json`. That file is the
+opt-in activation contract for quiet agent behavior: load `brief` when context
+matters, auto-scope `library:*`, use `web:*` for provenance-capturing web
+search/fetch, and write compact breadcrumbs with `log:*`. If Atlas is not
+available or not relevant, agents should fail open and continue normally.
+
+Sharing is graph-scoped: visibility (private/unlisted/public) and roles
+(viewer/editor/admin) live on the project root and descendants inherit. Public
+graphs can be browsed and continued by forking — `atlas fork --node <id>` copies
+a visible graph/subtree into your account, preserving code-state and provenance.
+
+## Reference
+
+- [Auth and config](/auth-config.md): Browser login, keys, local config, secrets, integrations, and environment variables.
+- [CLI runtime](/cli-runtime.md): Config resolution, global flags, local commands, uploads, streams, and output formats.
+- [Feature map](/feature-map.md): Everything the shipped Atlas CLI and skills package expose.
+- [Commands](/commands.md): Current Atlas CLI command families and global flags.
+- [Bundled skills](/skills.md): The 9 skills included inside `@synsci/atlas` (incl. `atlas-lab`, the research loop, and `atlas-paper` for manuscript drafts).
+- [API introduction](/api-reference/introduction.md): Direct HTTP API overview.
+- [Atlas REST routes](/api-reference/atlas-rest.md): Representative `/api/v1` routes.
+- [Safety](/safety.md): Automation guidelines and destructive command rules.

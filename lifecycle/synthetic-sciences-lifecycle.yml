@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.syntheticsciences.ai/atlas/cli-overview
+versioning:
+  api:
+    scheme: uri-path
+    current: v1
+    base: https://app.syntheticsciences.ai/api/v1
+  cli:
+    scheme: semver
+    current: 0.13.2
+    command_grammar_version: 0.8.x
+    docs: https://docs.syntheticsciences.ai/atlas/cli-overview
+deprecation:
+  policy: >-
+    Backward-compatibility via hidden legacy aliases: pre-0.8 CLI command names
+    (nodes:create, runs:record, labels:assign, keys:create, github:refresh, ...)
+    still work as undocumented aliases so old scripts keep running, while new
+    scripts use the canonical singular-noun names.
+  retired_endpoints:
+    signal: HTTP 426 Upgrade Required
+    detail: "The MCP-era pairing and token-exchange auth endpoints are retired and return 426."
+  docs: https://docs.syntheticsciences.ai/atlas/cli-overview
+sla: null
+status_page: null
+deprecated_operations: []
+notes: >-
+  No public status page or formal SLA/deprecation-policy page was found. Deprecation is
+  handled operationally (legacy aliases + 426 for retired endpoints). No StatusPage or
+  Deprecation-policy pointer is emitted because neither is genuinely published.

@@ -1,21 +1,132 @@
 aid: synthetic-sciences
 name: Synthetic Sciences
-description: Synthetic Sciences is a company surfaced as a portfolio company of y-combinator and added
-  to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Synthetic Sciences is a Y Combinator-backed AI research lab building foundation models
+  for scientific discovery. Its flagship product, Atlas, is an agent-first research graph
+  and infrastructure layer for autonomous science: durable typed nodes (hypotheses,
+  experiment plans, recorded runs, evidence, decisions) linked into a shared, forkable map
+  that humans and AI agents read and write directly over a REST API and the @synsci/atlas
+  CLI. Atlas bundles a Library for indexing and grounded search over repos, docs, papers,
+  and datasets, a cross-provider GPU compute marketplace, GEPA-based optimization and
+  refereed autoresearch, and nine agent Skills. The lab also ships two open-source
+  (Apache 2.0) projects: OpenScience, a model-agnostic AI workbench that runs the full
+  research loop, and Delphi, a self-hosted MCP server that gives coding agents semantic
+  context over code, papers, and HuggingFace datasets.
 url: https://raw.githubusercontent.com/api-evangelist/synthetic-sciences/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://app.syntheticsciences.ai/synsc-logo.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - y-combinator
-x-tier: stub
-x-tier-reason: portfolio-lead
+- a16z
+- firestreak-ventures
+- pareto-holdings
+x-tier: profiled
+x-tier-reason: enriched-from-public-surface
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Artificial Intelligence
+- Machine Learning
+- Scientific Research
+- Developer Tools
+- Agents
+- Foundation Models
+- Knowledge Graph
+- Model Context Protocol
+- CLI
+- Research Infrastructure
+apis:
+- name: Atlas REST API
+  description: >-
+    The direct HTTP API behind the Atlas CLI — the research graph, Library, runs,
+    evidence, compute, and research surfaces. Bearer (thk_*) auth; JSON responses;
+    Idempotency-Key on writes. Base https://app.syntheticsciences.ai/api/v1.
+  humanURL: https://docs.syntheticsciences.ai/atlas/rest-api
+  baseURL: https://app.syntheticsciences.ai/api/v1
+  tags:
+  - Research
+  - Agents
+  - Knowledge Graph
+  properties:
+  - type: Authentication
+    url: authentication/synthetic-sciences-authentication.yml
+  - type: Conventions
+    url: conventions/synthetic-sciences-conventions.yml
+  - type: ErrorCatalog
+    url: errors/synthetic-sciences-problem-types.yml
+  - type: DataModel
+    url: data-model/synthetic-sciences-data-model.yml
+common:
+# --- link properties (identity / discoverability) ---
+- type: Website
+  url: https://syntheticsciences.ai
+- type: DeveloperPortal
+  url: https://docs.syntheticsciences.ai
+- type: Documentation
+  url: https://docs.syntheticsciences.ai/atlas
+- type: APIReference
+  url: https://docs.syntheticsciences.ai/atlas/commands
+- type: GettingStarted
+  url: https://docs.syntheticsciences.ai/atlas/quickstart
+- type: Pricing
+  url: https://docs.syntheticsciences.ai/atlas/billing
+- type: SignUp
+  url: https://app.syntheticsciences.ai
+- type: Support
+  url: mailto:team@syntheticsciences.ai
+- type: GitHubOrganization
+  url: https://github.com/synthetic-sciences
+- type: ProductSite
+  url: https://tryatlas.sh
+# --- artifact pointers (canonical types the rating reads) ---
+- type: LLMsTxt
+  url: llms/synthetic-sciences-llms.txt
+- type: Packages
+  url: packages/synthetic-sciences-packages.yml
+- type: SDKs
+  url: packages/synthetic-sciences-packages.yml
+- type: CLI
+  url: cli/synthetic-sciences-cli.yml
+- type: MCPServer
+  url: mcp/synthetic-sciences-mcp.yml
+- type: Authentication
+  url: authentication/synthetic-sciences-authentication.yml
+- type: Conventions
+  url: conventions/synthetic-sciences-conventions.yml
+- type: Idempotency
+  url: conventions/synthetic-sciences-conventions.yml
+- type: ErrorCatalog
+  url: errors/synthetic-sciences-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/synthetic-sciences-lifecycle.yml
+- type: DataModel
+  url: data-model/synthetic-sciences-data-model.yml
+- type: Conformance
+  url: conformance/synthetic-sciences-conformance.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DomainSecurity
+  url: security/synthetic-sciences-domain-security.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
