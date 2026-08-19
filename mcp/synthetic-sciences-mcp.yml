@@ -6,61 +6,136 @@ license: Apache-2.0
 server:
   name: synsci-delphi
   product: Delphi
-  summary: >-
-    Open-source, self-hosted MCP server that gives AI agents deep context through
-    semantic search across code repositories, research papers, and HuggingFace datasets.
-    Runs fully local (PostgreSQL + pgvector); local sentence-transformers embeddings by
-    default with optional Gemini / OpenAI hosted embeddings.
+  summary: Open-source, self-hosted MCP server that gives AI agents deep context through semantic search
+    across code repositories, research papers, and HuggingFace datasets. Runs fully local (PostgreSQL
+    + pgvector); local sentence-transformers embeddings by default with optional Gemini / OpenAI hosted
+    embeddings.
   transport: stdio
   bridge:
     command: uvx
-    args: [synsci-delphi-proxy]
+    args:
+    - synsci-delphi-proxy
     env:
       SYNSC_API_KEY: your-api-key
       SYNSC_API_URL: http://localhost:8742
   http_api: http://localhost:8742
   dashboard: http://localhost:3000
   install: npx @synsci/delphi
-  clients: [Claude Code, Cursor, Windsurf, Claude Desktop]
+  clients:
+  - Claude Code
+  - Cursor
+  - Windsurf
+  - Claude Desktop
   mcp_server_name: synsc-context
   profiles:
     default: code + papers + datasets tools
     atlas: adds Atlas research-graph ingestion/retrieval tools (SYNSC_MCP_PROFILE=atlas)
     all: all tool groups
 tools:
-  # Code
-  - {name: index_repository, group: code, description: Index a GitHub repository (quality_mode, include_tests/docs/examples, deep_index, force_reindex).}
-  - {name: index_local_folder, group: code, description: Index a local directory straight from disk (private/WIP code).}
-  - {name: quick_index, group: code, description: Resolve a library name via the curated catalog and index it in one step.}
-  - {name: catalog_search, group: code, description: Resolve a library/framework name to an indexable source (works cold, zero indexed sources).}
-  - {name: search_code, group: code, description: Hybrid code search (vector + BM25 + symbol + path + trigram, fused).}
-  - {name: search_symbols, group: code, description: Find functions/classes/methods by name; structural extraction for 16 languages.}
-  - {name: get_symbol, group: code, description: Full symbol details plus reconstructed source body.}
-  - {name: find_callers, group: code, description: Who calls this symbol (code-dependency graph).}
-  - {name: find_callees, group: code, description: What this symbol calls — internal + external names.}
-  - {name: impact_analysis, group: code, description: Blast radius — transitive callers.}
-  - {name: build_code_graph, group: code, description: (Re)build the call graph for a repo.}
-  - {name: check_freshness, group: code, description: Is this index stale vs remote HEAD / file re-hash.}
-  - {name: list_stale_sources, group: code, description: List indexed repos whose index has drifted.}
-  - {name: get_file, group: code, description: Retrieve file content from an indexed repo.}
-  - {name: get_context, group: code, description: Fetch a chunk plus adjacent chunks and enclosing body/siblings.}
-  - {name: build_context_pack, group: code, description: Agent-ready context pack with token budgeter and re-query planner.}
-  - {name: get_directory_structure, group: code, description: Browse repository file tree.}
-  - {name: analyze_repository, group: code, description: Deep code analysis and architecture overview.}
-  - {name: classify_failure, group: code, description: Tag a Delphi failure with a stable failure-mode code.}
-  # Papers
-  - {name: index_paper, group: papers, description: Index from arXiv URL/ID or PDF upload.}
-  - {name: search_papers, group: papers, description: Hybrid paper search, section- and citation-aware, cross-encoder rerank.}
-  - {name: extract_quoted_evidence, group: papers, description: Pull literal sentences from a paper that ground a claim.}
-  - {name: joint_retrieval, group: papers, description: One call to paper + code + Atlas-graph hits, fused.}
-  - {name: get_citations, group: papers, description: Extract citation graph.}
-  - {name: get_equations, group: papers, description: Extract equations with context.}
-  - {name: generate_report, group: papers, description: Generate a markdown summary report.}
-  - {name: compare_papers, group: papers, description: Side-by-side paper comparison.}
-  # Datasets
-  - {name: index_dataset, group: datasets, description: Index a HuggingFace dataset card.}
-  - {name: search_datasets, group: datasets, description: Semantic dataset search with cross-encoder rerank.}
-notes: >-
-  Delphi is a genuine published, open-source MCP server (searched, not derived).
-  Atlas itself is direct REST + CLI and deliberately ships NO hosted MCP server — its
-  docs state the retired MCP-era auth/pairing endpoints now return HTTP 426 Upgrade Required.
+- name: index_repository
+  group: code
+  description: Index a GitHub repository (quality_mode
+  include_tests/docs/examples: null
+  deep_index: null
+  force_reindex).: null
+- name: index_local_folder
+  group: code
+  description: Index a local directory straight from disk (private/WIP code).
+- name: quick_index
+  group: code
+  description: Resolve a library name via the curated catalog and index it in one step.
+- name: catalog_search
+  group: code
+  description: Resolve a library/framework name to an indexable source (works cold
+  zero indexed sources).: null
+- name: search_code
+  group: code
+  description: Hybrid code search (vector + BM25 + symbol + path + trigram
+  fused).: null
+- name: search_symbols
+  group: code
+  description: Find functions/classes/methods by name; structural extraction for 16 languages.
+- name: get_symbol
+  group: code
+  description: Full symbol details plus reconstructed source body.
+- name: find_callers
+  group: code
+  description: Who calls this symbol (code-dependency graph).
+- name: find_callees
+  group: code
+  description: What this symbol calls — internal + external names.
+- name: impact_analysis
+  group: code
+  description: Blast radius — transitive callers.
+- name: build_code_graph
+  group: code
+  description: (Re)build the call graph for a repo.
+- name: check_freshness
+  group: code
+  description: Is this index stale vs remote HEAD / file re-hash.
+- name: list_stale_sources
+  group: code
+  description: List indexed repos whose index has drifted.
+- name: get_file
+  group: code
+  description: Retrieve file content from an indexed repo.
+- name: get_context
+  group: code
+  description: Fetch a chunk plus adjacent chunks and enclosing body/siblings.
+- name: build_context_pack
+  group: code
+  description: Agent-ready context pack with token budgeter and re-query planner.
+- name: get_directory_structure
+  group: code
+  description: Browse repository file tree.
+- name: analyze_repository
+  group: code
+  description: Deep code analysis and architecture overview.
+- name: classify_failure
+  group: code
+  description: Tag a Delphi failure with a stable failure-mode code.
+- name: index_paper
+  group: papers
+  description: Index from arXiv URL/ID or PDF upload.
+- name: search_papers
+  group: papers
+  description: Hybrid paper search
+  section- and citation-aware: null
+  cross-encoder rerank.: null
+- name: extract_quoted_evidence
+  group: papers
+  description: Pull literal sentences from a paper that ground a claim.
+- name: joint_retrieval
+  group: papers
+  description: One call to paper + code + Atlas-graph hits
+  fused.: null
+- name: get_citations
+  group: papers
+  description: Extract citation graph.
+- name: get_equations
+  group: papers
+  description: Extract equations with context.
+- name: generate_report
+  group: papers
+  description: Generate a markdown summary report.
+- name: compare_papers
+  group: papers
+  description: Side-by-side paper comparison.
+- name: index_dataset
+  group: datasets
+  description: Index a HuggingFace dataset card.
+- name: search_datasets
+  group: datasets
+  description: Semantic dataset search with cross-encoder rerank.
+notes: Delphi is a genuine published, open-source MCP server (searched, not derived). Atlas itself is
+  direct REST + CLI and deliberately ships NO hosted MCP server — its docs state the retired MCP-era auth/pairing
+  endpoints now return HTTP 426 Upgrade Required.
+deployment:
+  mode: none
+  endpoint: http://localhost:8742
+  verified: probed
+  probe: dead
+  note: the endpoint this manifest claimed did not answer; recorded as none rather than deleted so the
+    claim stays auditable
+  checked: '2026-08-12'
+  source: catalog MCP census
