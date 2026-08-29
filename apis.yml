@@ -13,6 +13,17 @@ description: >-
   research loop, and Delphi, a self-hosted MCP server that gives coding agents semantic
   context over code, papers, and HuggingFace datasets.
 url: https://raw.githubusercontent.com/api-evangelist/synthetic-sciences/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
