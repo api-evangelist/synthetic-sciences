@@ -57,7 +57,7 @@ modified: '2026-07-21'
 tags:
 - Company
 - Artificial Intelligence
-- Machine-Learning
+- Machine Learning
 - Scientific Research
 - Developer Tools
 - Agents
@@ -78,6 +78,7 @@ tags_raw:
 - Model Context Protocol
 - CLI
 - Research Infrastructure
+- Machine-Learning
 apis:
 - name: Atlas REST API
   description: >-
