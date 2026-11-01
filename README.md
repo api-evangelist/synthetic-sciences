@@ -64,6 +64,96 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Synthetic Sciences is a company surfaced as a portfolio company of y-combinator and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Synthetic Sciences is a Y Combinator-backed AI research lab building foundation models for scientific discovery. Its flagship product, Atlas, is an agent-first research graph and infrastructure layer for autonomous science: durable typed nodes (hypotheses, experiment plans, recorded runs, evidence, decisions) linked into a shared, forkable map that humans and AI agents read and write directly over a REST API and the @synsci/atlas CLI. Atlas bundles a Library for indexing and grounded search over repos, docs, papers, and datasets, a cross-provider GPU compute marketplace, GEPA-based optimization and refereed autoresearch, and nine agent Skills. The lab also ships two open-source (Apache 2.0) projects: OpenScience, a model-agnostic AI workbench that runs the full research loop, and Delphi, a self-hosted MCP server that gives coding agents semantic context over code, papers, and HuggingFace datasets.
 
-Backed by: y-combinator
+**Areas:** Company · Artificial Intelligence · Machine Learning · Scientific Research · Developer Tools · Agents · Foundation Models · Knowledge Graph · MCP · CLI · Research Infrastructure
+
+## Synthetic Sciences on APIs.io
+
+Everything profiled for Synthetic Sciences is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/synthetic-sciences/](https://apis.io/providers/synthetic-sciences/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Atlas REST API](https://apis.io/apis/synthetic-sciences/atlas-rest-api/) — The direct HTTP API behind the Atlas CLI — the research graph, Library, runs, evidence, compute, and research surfaces. Bearer (thk_*) auth; JSON responses;…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [synsci-delphi](https://apis.io/servers/synthetic-sciences/synsci-delphi/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Synthetic Sciences Authentication](https://apis.io/security/synthetic-sciences/synthetic-sciences-authentication/)
+- [Synthetic Sciences Domain Security](https://apis.io/security/synthetic-sciences/synthetic-sciences-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://syntheticsciences.ai)
+- [Documentation](https://docs.syntheticsciences.ai/atlas)
+- [Getting started](https://docs.syntheticsciences.ai/atlas/quickstart)
+- [API reference](https://docs.syntheticsciences.ai/atlas/commands)
+- [Pricing](https://docs.syntheticsciences.ai/atlas/billing)
+- [Sign up](https://app.syntheticsciences.ai)
+- [GitHub](https://github.com/synthetic-sciences)
+
+## API Evangelist rating
+
+**Kin Score 16.3** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 42.3 |
+| Access clarity | 0.0 |
+
+**Agent readiness 9.5** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.5** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/synthetic-sciences/](https://apis.io/providers/synthetic-sciences/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Synthetic Sciences: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/synthetic-sciences/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
